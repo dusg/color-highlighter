@@ -28,6 +28,7 @@
   <extensions defaultExtensionNs="com.intellij">
     <highlightVisitor implementation="com.mallowigi.visitors.AnyVisitor"/>
     <highlightVisitor implementation="com.mallowigi.visitors.TextVisitor"/>
+    <highlightVisitor implementation="com.mallowigi.visitors.QtVisitor"/>
     <codeInsight.lineMarkerProvider language=""
                                     implementationClass="com.mallowigi.gutter.GutterColorLineMarkerProvider"/>
   </extensions>

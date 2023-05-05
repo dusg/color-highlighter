@@ -85,7 +85,7 @@ class GutterColorRenderer(private val color: Color?) : GutterIconRenderer() {
           editor.component,
           message("replace.color"),
           currentColor,
-          false
+          true
         )
         copyColor(currentColor, newColor)
       }

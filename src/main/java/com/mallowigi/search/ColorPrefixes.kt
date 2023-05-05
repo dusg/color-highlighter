@@ -40,5 +40,7 @@ enum class ColorPrefixes(val text: String) {
   COLOR_FROM_ARGB("Color.FromArgb("),
   NS_COLOR("[NSColor "),
   SWIFT_COLOR("NSColor("),
-  UI_COLOR("[UIColor ")
+  UI_COLOR("[UIColor "),
+  QT_COLOR("QColor("),
+  QT_NEW_COLOR("new QColor("),
 }

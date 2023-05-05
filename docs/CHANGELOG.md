@@ -1,6 +1,11 @@
 # Changelog
 
 ---
+## 16.0.0
+
+### Features
+
+- Support for **C++** **Qt** Languages
 
 ## 15.0.0
 

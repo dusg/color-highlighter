@@ -66,6 +66,7 @@ class ColorData(
   var intGreen: Int = 0,
   var intBlue: Int = 0,
   var intAlpha: Int = 255,
+  var colorValue: Int = 0,
   var alpha: Boolean = false,
   var startParen: Int = -1,
   var endParen: Int = -1
@@ -75,6 +76,10 @@ class ColorData(
   fun init(text: String) {
     startParen = text.indexOf('(')
     endParen = text.indexOf(')')
+    if (startParen == -1 || endParen == -1) {
+      startParen = text.indexOf("{")
+      endParen = text.indexOf("}")
+    }
   }
 
   /** Parse red part of a `Color(r,g,b)` form. */
@@ -188,7 +193,7 @@ class ColorData(
    */
   fun getNextParam(next: String): String = next.split(":")[1]
 
-  private fun parseInt(part: @NonNls String?): Int = when {
+  fun parseInt(part: @NonNls String?): Int = when {
     part!!.lowercase(Locale.getDefault()).startsWith("0x") -> part.substring(2).toInt(16)
     part.startsWith("0") && part.length > 1 -> part.substring(1).toInt(8)
     else -> part.toInt()

@@ -91,19 +91,20 @@ intellij {
   plugins.set(listOf(
     "com.intellij.java",
     "com.intellij.java-i18n",
-    "com.intellij.database",
-    "com.intellij.css",
+//    "com.intellij.database",
+//    "com.intellij.css",
     "com.intellij.properties",
     "org.jetbrains.plugins.yaml",
     "org.intellij.plugins.markdown",
     "org.jetbrains.kotlin",
-    "Dart:$depsDartVersion",
-    "Pythonid:$depsPyVersion",
-    "org.jetbrains.plugins.go:$depsGoVersion",
-    "org.intellij.scala:$depsScalaVersion",
-    "org.jetbrains.plugins.ruby:$depsRubyVersion",
-    "com.jetbrains.php:$depsPhpVersion",
-    "R4Intellij:$depsRVersion"
+//    "Dart:$depsDartVersion",
+//    "Pythonid:$depsPyVersion",
+//    "org.jetbrains.plugins.go:$depsGoVersion",
+//    "org.intellij.scala:$depsScalaVersion",
+//    "org.jetbrains.plugins.ruby:$depsRubyVersion",
+//    "com.jetbrains.php:$depsPhpVersion",
+//    "com.jetbrains.php",
+//    "R4Intellij"
   ))
 }
 
@@ -179,8 +180,8 @@ tasks {
 
   publishPlugin {
 //    dependsOn("patchChangelog")
-    token.set(System.getenv("INTELLIJ_PUBLISH_TOKEN") ?: file("./publishToken").readText().trim())
-    channels.set(listOf(properties("pluginVersion").split('-').getOrElse(1) { "default" }.split('.').first()))
+//    token.set(System.getenv("INTELLIJ_PUBLISH_TOKEN") ?: file("./publishToken").readText().trim())
+//    channels.set(listOf(properties("pluginVersion").split('-').getOrElse(1) { "default" }.split('.').first()))
   }
 
   signPlugin {
@@ -190,7 +191,7 @@ tasks {
   }
 
   runIde {
-//    ideDir.set(fileProperties("idePath"))
+    ideDir.set(fileProperties("idePathWin"))
   }
 
   register("markdownToHtml") {

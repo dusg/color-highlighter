@@ -38,7 +38,7 @@
   - ObjectiveC
   - Swift
   - C
-  - C++
+  - C++ (Qt **NEW**)
   - C#
   - Markdown
   - Dart (**NEW**)

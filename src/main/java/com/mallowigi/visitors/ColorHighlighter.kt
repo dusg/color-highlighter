@@ -66,8 +66,8 @@ internal object ColorHighlighter {
   }
 
   private fun getHighlightInfoBuilder(color: Color): HighlightInfo.Builder {
-    var newHighlightInfo = HighlightInfo.newHighlightInfo(COLOR_ELEMENT)
-      .textAttributes(getAttributesFlyweight(color))
+    var newHighlightInfo = HighlightInfo.newHighlightInfo(HighlightInfoType.INFORMATION)
+//      .textAttributes(getAttributesFlyweight(color))
 
     if (GutterColorLineMarkerProvider.isEnabled()) {
       newHighlightInfo = newHighlightInfo.gutterIconRenderer(GutterColorRenderer(color))
