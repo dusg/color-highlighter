@@ -30,7 +30,6 @@ import com.intellij.codeInsight.daemon.impl.HighlightVisitor
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.util.PsiUtilCore
-import com.mallowigi.config.home.ColorHighlighterConfig
 import com.mallowigi.search.ColorSearchEngine
 import com.mallowigi.search.parsers.ColorParser
 import com.mallowigi.search.parsers.QColorCtorParser
@@ -42,19 +41,16 @@ class QtVisitor : ColorVisitor() {
     "CALL_EXPRESSION",
     "REFERENCE_EXPRESSION",
     "DECLARATION",
-    "CPP_NEW_EXPRESSION"
+    "CPP_NEW_EXPRESSION",
+    "STRING_LITERAL"
   )
   private val prefixes: Set<Pair<Regex, ()->ColorParser>> = setOf(
     Pair("^(const )?QColor \\w+\\s*=\\s*[({]".toRegex()) { return@Pair QColorCtorParser(); },
     Pair("^(const )?QColor\\s*\\w+\\s*[{(]".toRegex()) { return@Pair QColorCtorParser(); },
     Pair("^QColor\\s*\\(".toRegex()) { return@Pair QColorCtorParser(); },
     Pair("^new QColor\\s*\\(".toRegex()) { return@Pair QColorCtorParser(); },
-//    Pair("^(const )?auto \\w+ = QColor\\s*\\(".toRegex()) { return@Pair ColorCtorParser(); },
-//    Pair("^(const )?QColor \\w+ = QColor\\s*\\(".toRegex()) { return@Pair ColorCtorParser(); },
 
   )
-
-  private val config = ColorHighlighterConfig.instance
 
   override fun clone(): HighlightVisitor = QtVisitor()
 
@@ -88,7 +84,10 @@ class QtVisitor : ColorVisitor() {
     val type = PsiUtilCore.getElementType(element).toString()
     if (type !in allowedTypes) return
 
-    val value = element.text
+    var value = element.text
+    if (type == "STRING_LITERAL") {
+      value = value.replace("\"", "")
+    }
     val color = ColorSearchEngine.getColor(value, this)
     color?.let { highlight(element, it) }
   }
